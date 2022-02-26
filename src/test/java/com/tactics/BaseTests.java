@@ -1,9 +1,18 @@
 package com.tactics;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Screenshots;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -14,19 +23,18 @@ public class BaseTests {
     public void init() {
         SelenideLogger.addListener("allure", new AllureSelenide().screenshots(true));
 
-        open("https://www.tactics.com/");
+        Configuration.browserSize = "1920x1080";
 
-//        ChromeOptions options = new ChromeOptions();
-//        options.setHeadless(true);
-//        options.addArguments("--lang=en_US");
-//        options.addArguments("--start-maximized");
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-//        Configuration.browserCapabilities = capabilities;
+        open("https://www.tactics.com/");
     }
 
-//    @AfterEach
-//    public void closeBrowser(WebDriver webDriver) {
-//        webDriver.quit();
-//    }
+    @AfterEach
+    public void closeBrowser() {
+        Selenide.closeWebDriver();
+    }
+
+    @Attachment(value = "Page", fileExtension = "png")
+    byte[] doPageScreenshot() throws IOException {
+        return Files.readAllBytes(Objects.requireNonNull(Screenshots.takeScreenShotAsFile()).toPath());
+    }
 }
