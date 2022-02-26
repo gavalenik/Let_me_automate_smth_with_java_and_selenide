@@ -17,7 +17,7 @@ public class CartTests extends BaseTests {
 
     @Test
     @DisplayName("Add item to cart and check total price")
-    void signIn_EmptyFields() throws InterruptedException {
+    void addSnowboardToCart_CheckTotalAmount() throws InterruptedException {
         new Menu().openMenu("Snowboard");
         new SnowboardCategories().chooseMensSnowboard();
         new FilterPanel().chooseCapitaBrand();
@@ -26,7 +26,7 @@ public class CartTests extends BaseTests {
         sleep(500);
         var itemPrice = new FoundItems().getFirstItemPrice();
         new FoundItems().openFirstItemCard();
-        new ProductCard().chooseFirstSize();
+        new ProductCard().chooseFirstAvailableAttribute();
         new ProductCard().addToCart();
 
         new Cart().totalAmount.shouldHave(exactText(itemPrice));
