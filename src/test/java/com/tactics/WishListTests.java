@@ -4,12 +4,17 @@ import com.tactics.widgetobjects.FilterPanel;
 import com.tactics.widgetobjects.FoundItems;
 import com.tactics.widgetobjects.Menu;
 import com.tactics.widgetobjects.ProductCard;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.visible;
 import static java.lang.Thread.sleep;
 
+@Epic("tactics.com")
+@Feature("Wish List")
+@DisplayName("Tactics wish list tests")
 public class WishListTests extends BaseTests {
 
     @Test
