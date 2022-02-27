@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
-import static java.lang.Thread.sleep;
 
 @Epic("tactics.com")
 @Feature("Cart")
@@ -22,13 +21,14 @@ public class CartTests extends BaseTests {
         new SnowboardCategories().chooseMensSnowboard();
         new FilterPanel().chooseCapitaBrand();
         new FilterPanel().chooseNSBrand();
-        new FoundItems().loader.shouldNotBe(visible);
-        sleep(500);
-        var itemPrice = new FoundItems().getFirstItemPrice();
         new FoundItems().openFirstItemCard();
         new ProductCard().chooseFirstAvailableAttribute();
+        var itemPrice = new ProductCard().getItemPrice();
         new ProductCard().addToCart();
+        new Header().goToCart();
 
-        new Cart().totalAmount.shouldHave(exactText(itemPrice));
+        new Cart().totalAmount
+                .shouldBe(visible)
+                .shouldHave(exactText(itemPrice));
     }
 }

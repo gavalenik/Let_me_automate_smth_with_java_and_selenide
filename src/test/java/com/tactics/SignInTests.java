@@ -10,7 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.sleep;
 
 
 @Epic("tactics.com")
@@ -25,7 +24,6 @@ public class SignInTests extends BaseTests {
         new Login().inputEmail("niteti5533@naluzotan.com");
         new Login().inputPassword("Qwerty1!");
         new Login().clickLoginButton();
-        new MyAccount().logout.shouldBe(visible);
         new MyAccount().clickLogoutLink();
         new Header().goToMyAccount();
 
@@ -73,8 +71,6 @@ public class SignInTests extends BaseTests {
         new Login().clickForgotPasswordLink();
         new ForgotPassword().inputEmail("niteti5533@naluzotan.com");
         new ForgotPassword().clickButtonSend();
-        new ForgotPassword().loader.should(disappear);
-        sleep(500);
 
         new ForgotPassword().successfulMessage
                 .shouldBe(visible)

@@ -11,6 +11,7 @@ public class ProductCard {
 
     public SelenideElement firstAvailableAttribute = $$(".product-picker-size-label:not(.product-picker-disabled)").get(0);
     public SelenideElement addToCartButton = $(".product-head-add-to-cart-button");
+    public SelenideElement itemPrice = $(".product-price-container");
     public SelenideElement viewCartButton = $(".cre-tactic-29-cta > .cre-viewcar-btn");
     public SelenideElement addToWishListButton = $("#product-add-to-wishlist-button");
     public SelenideElement tooltip = $("#tooltip");
@@ -33,11 +34,16 @@ public class ProductCard {
     }
 
     @Step("Add to cart")
-    public void addToCart() throws InterruptedException {
+    public void addToCart() {
         addToCartButton.click();
-        sleep(500);
-        if (viewCartButton.isDisplayed()) {
-            viewCartButton.click();
-        }
+//        sleep(2000);
+//        if (viewCartButton.isDisplayed()) {
+//            viewCartButton.click();
+//        }
+    }
+
+    @Step("Get item price")
+    public String getItemPrice() {
+        return itemPrice.getText();
     }
 }
