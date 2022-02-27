@@ -27,8 +27,7 @@ public class CartTests extends BaseTests {
         new ProductCard().addToCart();
         new Header().goToCart();
 
-        new Cart().totalAmount
-                .shouldBe(visible)
+        new Cart().totalAmount.shouldBe(visible)
                 .shouldHave(exactText(itemPrice));
     }
 }

@@ -2,9 +2,9 @@ package com.tactics.widgetobjects;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.sleep;
 
 public class Header {
 
@@ -19,5 +19,6 @@ public class Header {
     @Step("Click on Cart (header)")
     public void goToCart() {
         cart.click();
+        cart.sendKeys(Keys.ESCAPE);
     }
 }

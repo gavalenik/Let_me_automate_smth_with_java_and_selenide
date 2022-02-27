@@ -3,9 +3,8 @@ package com.tactics.widgetobjects;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.sleep;
 
 public class ForgotPassword {
 
@@ -18,8 +17,7 @@ public class ForgotPassword {
     @Step("Click button send")
     public void clickButtonSend() {
         buttonSend.click();
-        loader.should(disappear);
-        sleep(500);
+        loader.shouldNotBe(visible);
     }
 
     @Step("Input email")

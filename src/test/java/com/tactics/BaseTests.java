@@ -24,6 +24,7 @@ public class BaseTests {
         SelenideLogger.addListener("allure", new AllureSelenide().screenshots(true));
 
         Configuration.browserSize = "1920x1080";
+        // Configuration.pageLoadTimeout = 40000;
 
         open("https://www.tactics.com/");
     }
@@ -34,7 +35,7 @@ public class BaseTests {
     }
 
     @Attachment(value = "Page", fileExtension = "png")
-    byte[] doPageScreenshot() throws IOException {
+    public byte[] doPageScreenshot() throws IOException {
         return Files.readAllBytes(Objects.requireNonNull(Screenshots.takeScreenShotAsFile()).toPath());
     }
 }
